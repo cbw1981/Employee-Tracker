@@ -2,18 +2,28 @@
 const { prompt } = require("inquirer");
 // mysql2 is our db
 const mysql = require("mysql2");
-// Connects us to the database
+//const db = require("./db/connection");
+const figlet = require("figlet");
+const gradient = require("gradient-string");
+
 const db = mysql.createConnection({
-    host: "localhost",
-    // Your username
-    user: "root",
-    // Your password
-    password: "ghostpiss69",
-    database: "employees_db"
+  host: "localhost",
+  // Your MySQL username
+  user: "root",
+  // Your MySQL password
+  password: "ghostpiss69",
+  // Your MySQL database name
+  database: "employees_db"
+});
+
+function init() {
+  const message = "Employee Manager";
+  figlet(message, (err, data) => {
+    console.log(gradient.instagram.multiline(data));
+    homePage();
   });
-  
-
-
+}
+init();
 
 
 function homePage(){
@@ -183,10 +193,10 @@ function viewDepartment() {
       },
     ]).then((res) => {
       const departmentName = res.departmentName;
-      // Create an SQL query to insert a new department into the departments table
+    
       const query = `INSERT INTO departments (department_name) VALUES (?)`;
   
-      // Execute the query with the department name as a parameter
+
       db.query(query, [departmentName], (error, results) => {
         if (error) {
           console.error('Failed to add department:', error);

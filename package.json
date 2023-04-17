@@ -11,6 +11,8 @@
   "dependencies": {
     "asciiart-logo": "^0.2.6",
     "console.table": "^0.10.0",
+    "figlet": "^1.6.0",
+    "gradient-string": "^2.0.2",
     "inquirer": "8.2.4",
     "mysql2": "^2.1.0"
   }
